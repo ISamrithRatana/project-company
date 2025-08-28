@@ -1,7 +1,4 @@
-// ContactUs.tsx
-// This component creates a contact page with a two-column layout,
-// featuring contact information and a "fill up the form" section,
-// based on the provided image.
+"use client";
 export default function ContactUs() {
   return (
       <main className="container mx-auto p-6 md:p-12">

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from 'react';
 // The main component that defines the page layout.
 export default function DynamicLayout() {

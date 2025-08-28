@@ -1,5 +1,4 @@
-//  component for the application
-
+"use client";
 import Link from "next/link";
 
 export default function Navigation() {
@@ -27,7 +26,7 @@ export default function Navigation() {
           <Link href="/news" className="hover:text-green-700">News</Link>
           <Link href="/product" className="hover:text-green-700">Product</Link>
           <Link href="/contact" className="hover:text-green-700">Contact Us</Link>
-          <Link href="/about" className="hover:text-green-700">About Us</Link>
+          <Link href="/company" className="hover:text-green-700">Company</Link>
         </nav>
         <Link href="/login" className="rounded-full bg-green-700 px-6 py-2 font-semibold text-white shadow-md hover:bg-green-800 transition-colors">
           Login

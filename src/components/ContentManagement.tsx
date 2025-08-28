@@ -1,4 +1,4 @@
-
+"use client";
 export default function ContentManagement() {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans">

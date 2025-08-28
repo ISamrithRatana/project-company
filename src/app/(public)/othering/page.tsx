@@ -1,4 +1,4 @@
-// ShoppingCart.tsx
+"use client";
 export default function ShoppingCart() {
   // Mock data for the products in the cart
   const cartItems = [

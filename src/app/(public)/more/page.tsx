@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useState } from 'react';
 
 // Placeholder data for news/post items

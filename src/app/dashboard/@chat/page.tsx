@@ -1,5 +1,4 @@
-// This is the chat page
-
+"use client";
 export default function ChatPage() {
   return (
     <div>

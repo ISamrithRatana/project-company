@@ -1,3 +1,4 @@
+"use client";
 import ContentManagement from '@/components/ContentManagement'
 
 import React from 'react';

@@ -1,7 +1,4 @@
-// Footer.tsx
-// This component provides a responsive footer for the World Peas website,
-// styled with Tailwind CSS to match the existing design.
-//  
+"use client";
 export default function Footer() {
   return (
     <footer className="bg-gray-100 text-gray-600 font-sans p-8 md:p-12 mt-12 rounded-t-xl">
