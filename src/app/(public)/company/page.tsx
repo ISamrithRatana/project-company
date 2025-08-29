@@ -1,5 +1,5 @@
 "use client";
-import { useDialog } from '@/components/dialogProvider/DialogProvider';
+import { useDialog } from '@/components/DialogProvider/DialogProvider';
 export default function AboutPage() {
     const { showDialog } = useDialog();
 

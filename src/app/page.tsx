@@ -1,7 +1,7 @@
 "use client";
 import { useState } from 'react';
 import StayConnected from '@/components/StayConnected';
-import Navigation from '@/components/Navigation/AppNavigation';
+import Navigation from '@/components/NavigationComponents/AppNavigation';
 
 // It uses Tailwind CSS for styling. The Link component from Next.js has been
 // replaced with a standard <a> tag to fix a compilation error.

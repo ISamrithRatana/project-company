@@ -53,7 +53,7 @@ export default function Shop() {
   return (
     <div className="min-h-screen bg-gray-50 font-sans text-gray-800">
       {/* Main content area */}
-      <main className="container mx-auto px-8 pt-24">
+      <main className="container mx-auto px-8 pt-10">
         {/* Produce section header */}
         <div className="flex items-end justify-between border-b border-gray-200 pb-4">
           <div className="flex items-center space-x-4">

@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/dist/client/link";
 
-
 export default function AdminPage() {
     const [loading, setLoading] = useState(false);
   const router = useRouter();

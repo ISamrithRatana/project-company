@@ -3,9 +3,8 @@ import Link from "next/link";
 
 export default function Navigation() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-100 flex items-center justify-between bg-white px-8 py-4 shadow-sm">
-      {/* Brand logo on the left */}
-      <a href="/" className="text-3xl font-bold tracking-tight text-green-700">World Peas</a>
+    <header className="sticky top-0 left-0 right-0 z-50 flex items-center justify-between bg-white px-8 py-4 shadow-sm">
+      <Link href="/" className="text-3xl font-bold tracking-tight text-green-700">World Peas</Link>
 
       {/* Search bar in the middle */}
       <div className="flex max-w-md mx-8 ">

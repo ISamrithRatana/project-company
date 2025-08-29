@@ -1,5 +1,5 @@
-import Navigation from "@/components/Navigation/AppNavigation";
-import { DialogProvider } from "@/components/dialogProvider/DialogProvider";
+import Navigation from "@/components/NavigationComponents/AppNavigation";
+import { DialogProvider } from "@/components/DialogProvider/DialogProvider";
 
 
 export default function RootLayout({
