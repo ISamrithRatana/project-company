@@ -1,23 +1,31 @@
-import { NextResponse, NextRequest } from 'next/server'
+// src/middleware.ts
+import { NextResponse, NextRequest } from "next/server";
 
-// config run time
-const runtime = "nodejs"
+export const runtime = "nodejs";
 
-export function middleware(req: NextRequest ) {
+export function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl;
 
-  if (req.nextUrl.pathname.startsWith("/admin") && !req.nextUrl.pathname.startsWith("/admin/login")) {
+  // Skip API routes
+  if (pathname.startsWith("/api")) return NextResponse.next();
+
+  // Pages to protect
+  const protectedPages = ["/admin", "/system", "/dashboard"];
+  const isProtected = protectedPages.some((p) => pathname.startsWith(p));
+
+  if (isProtected) {
     const adminSession = req.cookies.get("admin_session")?.value;
-
-    if (!adminSession || adminSession !== process.env.ADMIN_PASSWORD) {
-      return NextResponse.redirect(new URL("/login", req.url));
+    if (!adminSession) {
+      // Redirect to login with `redirect` param
+      const loginUrl = new URL("/login", req.url);
+      loginUrl.searchParams.set("redirect", pathname); // <== save original page
+      return NextResponse.redirect(loginUrl);
     }
   }
+
   return NextResponse.next();
 }
-// Apply middleware only to /admin paths
+
 export const config = {
-  matcher: ["/admin/:path*"],
-
+  matcher: ["/admin/:path*", "/system/:path*", "/dashboard/:path*"],
 };
-
-

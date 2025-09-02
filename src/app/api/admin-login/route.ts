@@ -1,19 +1,19 @@
-// app/api/admin-login/route.ts
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
+import { checkUserCredentials } from "@/actions/Check-Auth-Actions";
 
-export async function POST(req: Request) {
-  const { password } = await req.json();
+export async function POST(req: NextRequest) {
+  const { username, password } = await req.json();
 
-  if (password === process.env.ADMIN_PASSWORD) {
-    const response = NextResponse.json({ success: true });
-    response.cookies.set({
-      name: "admin_session",
-      value: process.env.ADMIN_PASSWORD!,
+  const valid = await checkUserCredentials(username, password);
+
+  if (valid) {
+    const res = NextResponse.json({ success: true });
+    res.cookies.set("admin_session", "1", {
+      httpOnly: true,
       path: "/",
-      httpOnly: true, // secure cookie
-      sameSite: "lax",
+      maxAge: 60 * 60 * 24, // 1 day
     });
-    return response;
+    return res;
   }
 
   return NextResponse.json({ success: false });

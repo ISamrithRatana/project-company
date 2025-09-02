@@ -1,13 +1,15 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function LoginForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const redirectPath = searchParams.get("redirect") || "/admin"; // default
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -15,24 +17,28 @@ export default function LoginForm() {
     setLoading(true);
 
     try {
+      const form = event.currentTarget;
+      const formData = new FormData(form);
+      const username = formData.get("email")?.toString().trim() || "";
+      const password = formData.get("password")?.toString().trim() || "";
+
       const r = await fetch("/api/admin-login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        // Use the 'password' state here to send the password
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ username, password }),
       });
+
       const data = await r.json();
       if (data.success) {
-        router.push("/admin");
+        router.push(redirectPath); // <-- go to original page
       } else {
-        setError("Wrong password");
+        setError("Wrong username or password");
       }
     } catch {
       setError("Network error");
     } finally {
       setLoading(false);
     }
-    console.log('Form submitted!');
   };
 
   return (
@@ -51,7 +57,7 @@ export default function LoginForm() {
               Email address
             </label>
             <input
-              type="email"
+              type="text"
               id="email"
               name="email"
               required

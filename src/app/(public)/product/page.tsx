@@ -85,6 +85,7 @@ export default function Shop() {
                 <h3 className="text-xl font-semibold">{product.name}</h3>
                 <p className="mt-1 text-lg font-medium text-green-700">{product.price} / {product.unit}</p>
                 <p className="mt-2 text-sm text-gray-500">Grown in {product.origin}</p>
+                <button className='bg-blue-500 text-white px-4 w-full py-2 rounded-full'>click</button>
               </div>
             </div>
           ))}

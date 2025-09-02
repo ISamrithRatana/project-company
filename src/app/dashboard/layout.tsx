@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Bar from '@/components/Sidebar'
+import Sidebar from '@/components/SidebarComponets/DashboardSidebar'
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
@@ -12,11 +12,11 @@ export default function DashboardLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    return (<>
+    return (
     <div className="flex min-h-screen">
-        <Bar/>
+        <Sidebar />
         {children}
     </div>
-    </>);
+    );
 }
     
