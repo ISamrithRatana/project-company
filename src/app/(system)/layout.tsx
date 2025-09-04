@@ -1,3 +1,4 @@
+import POSPage from "@/components/PosComponents/PosNavigation";
 
 export default function RootLayout({
   children,
@@ -6,7 +7,8 @@ export default function RootLayout({
 }>) {
   return (
     <div>
-        {children}
+      <POSPage />
+      {children}
     </div>
   );
 }

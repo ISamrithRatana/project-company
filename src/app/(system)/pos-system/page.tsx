@@ -71,14 +71,8 @@ export default function POSPage() {
 
   return (
     <div className="min-h-screen bg-gray-100 font-sans flex flex-col items-center">
-      <header className="bg-gray-800 text-white w-full text-center p-4 rounded ">
-        <h1 className="text-3xl font-bold">Welcome to Our Coffee Shop</h1>
-        <p>Enjoy the best coffee in town, made from freshly roasted beans.</p>
-        <h2 className="mt-2 text-xl">Our Menu</h2>
-      </header>
-
       <main className="flex w-full gap-1 h-[70vh] p-2 ">
-        <div className="order-summary border-2 rounded w-64 relative overflow-auto">
+        <div className="order-summary border rounded w-64 relative overflow-auto">
           <h2 className="text-center font-bold mb-2">Order</h2>
           <ul className="p-4">
             {order.map((item, index) => (
@@ -92,14 +86,14 @@ export default function POSPage() {
           </p>
         </div>
 
-        <section className="menu flex flex-wrap gap-2 border-2 p-4 rounded flex-1 overflow-auto justify-center">
+        <section className="menu flex flex-wrap gap-2 border p-4 rounded flex-1 overflow-auto justify-center">
           {menuItems.map((menu) => (
             <button
               key={menu.id}
               onClick={() => orderItem(menu)}
-              className="bg-amber-100 text-gray-800 rounded px-4 py-2 w-44 h-12 hover:bg-yellow-200 transition"
+              className="bg-amber-100 text-gray-800 rounded px-4 py-2 w-52 h-12 hover:bg-yellow-200 transition"
             >
-              {menu.name} ${menu.price.toFixed(2)}
+              {menu.name} ${menu.price}
             </button>
           ))}
         </section>

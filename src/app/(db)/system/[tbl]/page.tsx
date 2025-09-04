@@ -1,22 +1,13 @@
-import fs from "fs/promises";
 import TableClient from "@/components/TableClient";
-import { getFilePath } from "@/actions/tableActions";
+import { getTableData, DataItem } from "@/actions/tableActions";
 
-interface DataItem {
-  [key: string]: string;
-}
-
-export default async function TablePage({ params }: { params: Promise<{ tbl: string }> }) {
+export default async function TablePage(
+  props: PageProps<'/system/[tbl]'>
+) {
+  const { params } = props;
   const { tbl } = await params;
-  const filePath = await getFilePath(tbl);
 
-  let data: DataItem[] = [];
-  try {
-    const fileContent = await fs.readFile(filePath, "utf-8");
-    data = JSON.parse(fileContent); // JSON array of objects
-  } catch {
-    return <p>Table "{tbl}" not found</p>;
-  }
+  const data: DataItem[] = await getTableData(tbl);
 
   if (!data.length) return <p>No data found in table "{tbl}"</p>;
 
