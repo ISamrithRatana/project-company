@@ -18,7 +18,7 @@ export default function DynamicLayout() {
                         <section className="flex-1 bg-pink-200 rounded-lg p-6 mt-6">
                             <h2 className="text-2xl font-bold text-gray-800 mb-4">Main Content Area</h2>
                             <p className="text-gray-600">
-                                This is the primary area for your page's content. You can add your components here, such as a dashboard, a list of items, or a form. The `bg-pink-200` is for visual representation, matching your provided image.
+                                This is the primary area for your page&apos;s content. You can add your components here, such as a dashboard, a list of items, or a form. The `bg-pink-200` is for visual representation, matching your provided image.
                             </p>
                         </section>
                     </main>

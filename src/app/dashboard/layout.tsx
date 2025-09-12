@@ -1,6 +1,5 @@
+import Sidebar from "@/components/sidebar-components/dashboard-sidebar";
 import type { Metadata } from "next";
-import Sidebar from '@/components/SidebarComponets/DashboardSidebar'
-import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
     title: "World Peas",
@@ -14,7 +13,7 @@ export default function DashboardLayout({
 }>) {
     return (
     <div className="flex min-h-screen">
-        <Sidebar />
+        <Sidebar/>
         {children}
     </div>
     );

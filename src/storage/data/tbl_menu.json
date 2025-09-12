@@ -49,6 +49,14 @@
     "name": "Ice Green Tea",
     "price": 3.5
   },
-  {},
-  {}
+  {
+    "id": "10",
+    "name": "coca cola",
+    "price": "2"
+  },
+  {
+    "id": "11",
+    "name": "drink",
+    "price": "1"
+  }
 ]

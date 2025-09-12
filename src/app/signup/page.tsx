@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { addUser } from "@/actions/signupActions";
+import { registerAction } from "@/modules/auth/auth.actions";
 
 export default function SignupForm() {
   const [loading, setLoading] = useState(false);
@@ -28,11 +28,15 @@ export default function SignupForm() {
     }
 
     try {
-      await addUser(name, email, password);
+      await registerAction({ name, email, password });
       setSuccess("User registered successfully!");
       form.reset();
-    } catch (err: any) {
-      setError(err.message || "Failed to register user.");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Failed to register user.");
+      }
     }
 
     setLoading(false);

@@ -1,4 +1,4 @@
-import { Order } from "../types";
+import { Order } from "@/types/index";
 
 export function generateInitialOrders(): Order[] {
   const orders: Order[] = [];

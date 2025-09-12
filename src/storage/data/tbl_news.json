@@ -1,44 +1,58 @@
 [
   {
     "id": 1,
-    "name": "Heirloom tomato",
+    "name": "Electrical Product",
     "price": "$5.99",
-    "unit": "lb",
-    "origin": "San Juan Capistrano, CA"
+    "unit": "cam.tech.org",
+    "origin": "Make in Cambodia, phnom penh",
+    "path": "/news"
   },
   {
     "id": 2,
-    "name": "Organic ginger",
-    "price": "$12.99",
-    "unit": "lb",
-    "origin": "Huntington Beach, CA"
+    "name": "Electrical Product",
+    "price": "$12",
+    "unit": "cam.tech.org",
+    "origin": "Make in Cambodia, phnom penh",
+    "path": "/news"
   },
   {
     "id": 3,
-    "name": "Organic lemon",
+    "name": "Electrical Product",
     "price": "$2.99",
-    "unit": "lb",
-    "origin": "Oxnard, CA"
+    "unit": "cam.tech.org",
+    "origin": "Make in Cambodia, phnom penh",
+    "path": "/news"
   },
   {
     "id": 4,
-    "name": "Fresh basil",
+    "name": "Electrical Product",
     "price": "$3.50",
-    "unit": "bunch",
-    "origin": "Santa Maria, CA"
+    "unit": "cam.tech.org",
+    "origin": "Make in Cambodia, phnom penh",
+    "path": "/news"
   },
   {
     "id": 5,
-    "name": "Red potatoes",
+    "name": "Electrical Product",
     "price": "$4.25",
-    "unit": "lb",
-    "origin": "Bakersfield, CA"
+    "unit": "cam.tech.org",
+    "origin": "Make in Cambodia, phnom penh",
+    "path": "/news"
   },
   {
     "id": 6,
-    "name": "Yellow onion",
-    "price": "$1.99",
-    "unit": "lb",
-    "origin": "Holtville, CA"
+    "name": "Electrical Product",
+    "price": "$21.99",
+    "unit": "cam.tech.org",
+    "origin": "Make in Cambodia, phnom penh",
+    "path": "/news"
+  },
+  {
+    "id": "7",
+    "name": "huhdiw",
+    "price": "reretddv",
+    "unit": "hth",
+    "origin": "der",
+    "path": "/news"
   }
 ]

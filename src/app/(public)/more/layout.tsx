@@ -1,4 +1,4 @@
-import Navigation from "@/components/NavigationComponents/AppNavigation";
+import Navigation from "@/components/NavigationComponents/app-nav";
 
 // This is the layout for the News and Posts page
 export default function RootLayout({

@@ -1,22 +1,28 @@
-// File: app/api/books/route.ts
-
 import { NextResponse } from 'next/server'
 
-// Fake in-memory storage for demo (replace with DB later)
-let books: { id: number; title: string; author: string }[] = [
+// Define a type for a Book
+type Book = {
+  id: number
+  title: string
+  author: string
+}
+
+// Use const since books array is never reassigned
+const books: Book[] = [
   { id: 1, title: "Next.js Guide", author: "Vercel" },
   { id: 2, title: "React Handbook", author: "Flavio" },
 ]
 
-// Handle GET requests - return all books
+// GET: return all books
 export async function GET() {
   return NextResponse.json(books)
 }
 
-// Handle POST requests - create a new book
+// POST: create a new book
 export async function POST(request: Request) {
-  const body = await request.json()
-  const newBook = {
+  const body: { title: string; author: string } = await request.json()
+  
+  const newBook: Book = {
     id: books.length + 1,
     title: body.title,
     author: body.author,
@@ -29,9 +35,9 @@ export async function POST(request: Request) {
   )
 }
 
-// Handle PUT requests - update a book
+// PUT: update an existing book
 export async function PUT(request: Request) {
-  const body = await request.json()
+  const body: { id: number; title: string; author: string } = await request.json()
   const { id, title, author } = body
 
   const bookIndex = books.findIndex((b) => b.id === id)

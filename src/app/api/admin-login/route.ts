@@ -1,20 +1,33 @@
-import { NextResponse, NextRequest } from "next/server";
-import { checkUserCredentials } from "@/actions/Check-Auth-Actions";
+// app/api/login/route.ts
+import { NextRequest, NextResponse } from "next/server";
+import { AuthService } from "@/modules/auth/auth.service";
+import { cookies } from "next/headers";
+
+const authService = new AuthService();
 
 export async function POST(req: NextRequest) {
-  const { username, password } = await req.json();
+  try {
+    const { email, password } = await req.json(); // login payload
 
-  const valid = await checkUserCredentials(username, password);
+    // Authenticate user
+    const { user, token } = await authService.login({ email, password });
 
-  if (valid) {
-    const res = NextResponse.json({ success: true });
-    res.cookies.set("admin_session", "1", {
+    // Set token cookie
+    const cookieStore = await cookies();
+    cookieStore.set("auth_token", token, {
       httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
       path: "/",
       maxAge: 60 * 60 * 24, // 1 day
     });
-    return res;
-  }
 
-  return NextResponse.json({ success: false });
+    // Return user info (do not return password!)
+    return NextResponse.json({ success: true, user });
+  } catch (err: any) {
+    return NextResponse.json(
+      { success: false, message: err.message || "Invalid credentials" },
+      { status: 401 }
+    );
+  }
 }

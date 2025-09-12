@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "files": [
+      { "name": "admin-file.doc", "modified": "Sep 1", "fileSize": "1 item", "sharing": "Private" }
+    ]
+  },
+  {
+    "id": 2,
+    "files": [
+      { "name": "BobFile.txt", "modified": "Sep 5", "fileSize": "3 items", "sharing": "Private" }
+    ]
+  },
+  {
+    "id": 3,
+    "files": [
+      { "name": "SamFile.docx", "modified": "Sep 10", "fileSize": "5 items", "sharing": "Private" }
+    ]
+  }
+]

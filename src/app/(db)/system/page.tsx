@@ -1,6 +1,5 @@
 import fs from "fs/promises";
 import path from "path";
-import {getFilePath} from "@/actions/tableActions";
 // Helper to get folder size in bytes
 async function getFolderSize(folderPath: string): Promise<number> {
   const files = await fs.readdir(folderPath);

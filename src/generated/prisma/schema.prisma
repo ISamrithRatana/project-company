@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  name     String @unique
+  email    String @unique
+  password String
+
+  // Optional relation to Cloud
+  cloud Cloud?
+}
+
+model Cloud {
+  id     Int    @id @default(autoincrement())
+  userId Int    @unique
+  user   User   @relation(fields: [userId], references: [id])
+  files  File[]
+}
+
+model File {
+  id       Int      @id @default(autoincrement())
+  name     String
+  modified DateTime @default(now())
+  fileSize String
+  sharing  String
+  cloudId  Int
+  cloud    Cloud    @relation(fields: [cloudId], references: [id])
+}
+
+model News {
+  id     String @id
+  name   String
+  price  String
+  unit   String
+  origin String
+  path   String
+}
+
+model Contact {
+  id          Int      @id @default(autoincrement())
+  name        String
+  email       String
+  message     String
+  submittedAt DateTime @default(now())
+}

@@ -1,20 +1,18 @@
 [
   {
-    "id": 1,
-    "username": "Alice",
-    "email": "alice@mail.com",
-    "password": "secret"
-  },
-  {
-    "id": 2,
-    "username": "Bob",
-    "email": "bob@mail.com",
-    "password": "12345"
-  },
-  {
     "id": 3,
     "username": "Samrith",
     "email": "samrithratana10@gmail.com",
-    "password": "12345"
+    "password": "12345",
+    "role": "guest",
+    "cloudId": 3
+  },
+  {
+    "id": "3",
+    "username": "fef",
+    "email": "iokd@gmail.com",
+    "password": "1234",
+    "role": "admin",
+    "cloudId": "4"
   }
 ]
