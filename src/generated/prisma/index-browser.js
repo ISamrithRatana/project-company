@@ -155,6 +155,27 @@ exports.Prisma.ContactScalarFieldEnum = {
   submittedAt: 'submittedAt'
 };
 
+exports.Prisma.MenuScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  price: 'price'
+};
+
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  total: 'total'
+};
+
+exports.Prisma.OrderItemScalarFieldEnum = {
+  id: 'id',
+  menuId: 'menuId',
+  orderId: 'orderId',
+  name: 'name',
+  price: 'price',
+  count: 'count'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -166,7 +187,10 @@ exports.Prisma.ModelName = {
   Cloud: 'Cloud',
   File: 'File',
   News: 'News',
-  Contact: 'Contact'
+  Contact: 'Contact',
+  Menu: 'Menu',
+  Order: 'Order',
+  OrderItem: 'OrderItem'
 };
 
 /**

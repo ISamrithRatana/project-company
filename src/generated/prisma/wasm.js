@@ -127,6 +127,27 @@ exports.Prisma.ContactScalarFieldEnum = {
   submittedAt: 'submittedAt'
 };
 
+exports.Prisma.MenuScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  price: 'price'
+};
+
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  total: 'total'
+};
+
+exports.Prisma.OrderItemScalarFieldEnum = {
+  id: 'id',
+  menuId: 'menuId',
+  orderId: 'orderId',
+  name: 'name',
+  price: 'price',
+  count: 'count'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -138,7 +159,10 @@ exports.Prisma.ModelName = {
   Cloud: 'Cloud',
   File: 'File',
   News: 'News',
-  Contact: 'Contact'
+  Contact: 'Contact',
+  Menu: 'Menu',
+  Order: 'Order',
+  OrderItem: 'OrderItem'
 };
 /**
  * Create the Client
@@ -187,13 +211,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       Int    @id @default(autoincrement())\n  name     String @unique\n  email    String @unique\n  password String\n\n  // Optional relation to Cloud\n  cloud Cloud?\n}\n\nmodel Cloud {\n  id     Int    @id @default(autoincrement())\n  userId Int    @unique\n  user   User   @relation(fields: [userId], references: [id])\n  files  File[]\n}\n\nmodel File {\n  id       Int      @id @default(autoincrement())\n  name     String\n  modified DateTime @default(now())\n  fileSize String\n  sharing  String\n  cloudId  Int\n  cloud    Cloud    @relation(fields: [cloudId], references: [id])\n}\n\nmodel News {\n  id     String @id\n  name   String\n  price  String\n  unit   String\n  origin String\n  path   String\n}\n\nmodel Contact {\n  id          Int      @id @default(autoincrement())\n  name        String\n  email       String\n  message     String\n  submittedAt DateTime @default(now())\n}\n",
-  "inlineSchemaHash": "a6eb29afedcf9df86c6e8ca9898e6d4d9623718f88fa816b8f6b2b38ad8a56bf",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       Int    @id @default(autoincrement())\n  name     String @unique\n  email    String @unique\n  password String\n\n  // Optional relation to Cloud\n  cloud Cloud?\n}\n\nmodel Cloud {\n  id     Int    @id @default(autoincrement())\n  userId Int    @unique\n  user   User   @relation(fields: [userId], references: [id])\n  files  File[]\n}\n\nmodel File {\n  id       Int      @id @default(autoincrement())\n  name     String\n  modified DateTime @default(now())\n  fileSize String\n  sharing  String\n  cloudId  Int\n  cloud    Cloud    @relation(fields: [cloudId], references: [id])\n}\n\nmodel News {\n  id     String @id\n  name   String\n  price  String\n  unit   String\n  origin String\n  path   String\n}\n\nmodel Contact {\n  id          Int      @id @default(autoincrement())\n  name        String\n  email       String\n  message     String\n  submittedAt DateTime @default(now())\n}\n\nmodel Menu {\n  id    Int    @id @default(autoincrement())\n  name  String @unique\n  price Float\n\n  orderItems OrderItem[]\n}\n\nmodel Order {\n  id        Int         @id @default(autoincrement())\n  createdAt DateTime    @default(now())\n  total     Float\n  items     OrderItem[]\n}\n\nmodel OrderItem {\n  id      Int    @id @default(autoincrement())\n  menuId  Int\n  orderId Int\n  name    String\n  price   Float\n  count   Int\n\n  menu  Menu  @relation(fields: [menuId], references: [id])\n  order Order @relation(fields: [orderId], references: [id])\n}\n",
+  "inlineSchemaHash": "f43cdf7872bbfc5df2777358272c0aa5f94353d6a5421d4984e177adf784387d",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cloud\",\"kind\":\"object\",\"type\":\"Cloud\",\"relationName\":\"CloudToUser\"}],\"dbName\":null},\"Cloud\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"CloudToUser\"},{\"name\":\"files\",\"kind\":\"object\",\"type\":\"File\",\"relationName\":\"CloudToFile\"}],\"dbName\":null},\"File\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"modified\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"fileSize\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sharing\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cloudId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"cloud\",\"kind\":\"object\",\"type\":\"Cloud\",\"relationName\":\"CloudToFile\"}],\"dbName\":null},\"News\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"price\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"unit\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"origin\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"path\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"Contact\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"message\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"submittedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cloud\",\"kind\":\"object\",\"type\":\"Cloud\",\"relationName\":\"CloudToUser\"}],\"dbName\":null},\"Cloud\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"CloudToUser\"},{\"name\":\"files\",\"kind\":\"object\",\"type\":\"File\",\"relationName\":\"CloudToFile\"}],\"dbName\":null},\"File\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"modified\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"fileSize\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sharing\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"cloudId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"cloud\",\"kind\":\"object\",\"type\":\"Cloud\",\"relationName\":\"CloudToFile\"}],\"dbName\":null},\"News\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"price\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"unit\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"origin\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"path\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"Contact\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"message\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"submittedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Menu\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"price\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"orderItems\",\"kind\":\"object\",\"type\":\"OrderItem\",\"relationName\":\"MenuToOrderItem\"}],\"dbName\":null},\"Order\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"total\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"items\",\"kind\":\"object\",\"type\":\"OrderItem\",\"relationName\":\"OrderToOrderItem\"}],\"dbName\":null},\"OrderItem\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"menuId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"orderId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"price\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"count\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"menu\",\"kind\":\"object\",\"type\":\"Menu\",\"relationName\":\"MenuToOrderItem\"},{\"name\":\"order\",\"kind\":\"object\",\"type\":\"Order\",\"relationName\":\"OrderToOrderItem\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

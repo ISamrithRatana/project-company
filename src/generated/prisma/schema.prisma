@@ -57,3 +57,30 @@ model Contact {
   message     String
   submittedAt DateTime @default(now())
 }
+
+model Menu {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  price Float
+
+  orderItems OrderItem[]
+}
+
+model Order {
+  id        Int         @id @default(autoincrement())
+  createdAt DateTime    @default(now())
+  total     Float
+  items     OrderItem[]
+}
+
+model OrderItem {
+  id      Int    @id @default(autoincrement())
+  menuId  Int
+  orderId Int
+  name    String
+  price   Float
+  count   Int
+
+  menu  Menu  @relation(fields: [menuId], references: [id])
+  order Order @relation(fields: [orderId], references: [id])
+}
